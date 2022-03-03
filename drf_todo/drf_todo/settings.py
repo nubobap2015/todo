@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'my_users',
     'corsheaders',
+    'todo',
 ]
 
 MIDDLEWARE = [
