@@ -16,6 +16,9 @@ class Project(models.Model):
     updated_at = models.DateField(auto_now=True)
     created_at = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return self.text
+
 
 class Todo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.PROTECT)
