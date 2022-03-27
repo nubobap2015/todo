@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import CUList from './components/customusers.js'
+import ProjectList from './components/projects.js'
 import axios from 'axios'
 
 class App extends React.Component {
@@ -21,13 +22,25 @@ class App extends React.Component {
                    }
                )
            }).catch(error => console.log(error))
+
+         axios.get('http://localhost:8000/api/projects/')
+           .then(response => {
+               const projects = response.data
+                   this.setState(
+                   {
+                       'projects': projects
+                   }
+               )
+           }).catch(error => console.log(error))
     }
 
    render() {
             return (
-                   <div class="table-responsive">
-                       <CUList customUsers={this.state.customUsers} />
-                    </div>
+
+
+                   <div className="table-responsive">
+                       <ProjectList projects={this.state.projects}/>
+                   </div>
             )
        }
 }
