@@ -1,23 +1,23 @@
 import React from 'react'
 
 
-const ProjectItem = ({project}) => {
+const TodoItem = ({todo}) => {
    return (
        <tr>
-           <td bgcolor={project.color}>
-               {project.id}
+           <td bgcolor={todo.color}>
+               {todo.id}
            </td>
            <td>
-               <a href={project.url}>{project.text}</a>
+               <a href={todo.url}>{todo.text}</a>
            </td>
            <td>
-               {project.is_active}
+               {todo.is_active}
            </td>
        </tr>
    )
 }
 
-const ProjectList = ({projects}) => {
+const TodoList = ({todos}) => {
    return (
        <table className='table table-bordered table-hover'>
            <thead>
@@ -26,7 +26,7 @@ const ProjectList = ({projects}) => {
                         ID
                    </th>
                    <th>
-                        PROJECT
+                        TODO
                    </th>
                    <th>
                         ACTIVE
@@ -34,11 +34,11 @@ const ProjectList = ({projects}) => {
                </tr>
            </thead>
            <tbody>
-                {projects.map((project) => <ProjectItem project={project} key={project.id}/>)}
+                {todos.map((todo) => <TodoItem todo={todo} key={todo.id}/>)}
            </tbody>
        </table>
    )
 }
 
 
-export default ProjectList
+export default TodoList
