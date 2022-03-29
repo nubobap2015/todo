@@ -25,7 +25,9 @@ const CUItem = ({customUser}) => {
 
 const CUList = ({customUsers}) => {
    return (
+
        <table className='table table-bordered table-hover'>
+
            <thead>
                <tr>
                    <th>
