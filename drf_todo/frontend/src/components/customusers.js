@@ -25,7 +25,9 @@ const CUItem = ({customUser}) => {
 
 const CUList = ({customUsers}) => {
    return (
-       <table class='table table-bordered table-hover'>
+
+       <table className='table table-bordered table-hover'>
+
            <thead>
                <tr>
                    <th>
@@ -46,7 +48,7 @@ const CUList = ({customUsers}) => {
                </tr>
            </thead>
            <tbody>
-                {customUsers.map((customUser) => <CUItem customUser={customUser} />)}
+                {customUsers.map((customUser) => <CUItem customUser={customUser} key={customUser.id}/>)}
            </tbody>
        </table>
    )
