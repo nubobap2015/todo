@@ -1,9 +1,21 @@
 import './App.css';
 import React from 'react';
+import axios from 'axios'
 import CUList from './components/customusers.js'
 import ProjectList from './components/projects.js'
 import TodoList from "./components/todos";
-import axios from 'axios'
+
+import {BrowserRouter, Link, Route, Switch, Redirect/*, HashRouter*/} from "react-router-dom";
+
+
+const NotFound404 = ({location}) => {
+    return (
+        <div>
+            <h1>Страница по адресу '{location.pathname}' не найдена</h1>
+        </div>
+    )
+}
+
 
 class App extends React.Component {
     constructor(props) {
@@ -14,6 +26,7 @@ class App extends React.Component {
             'todos': []
         }
     }
+
 
     componentDidMount() {
         axios.get('http://localhost:8000/api/users/')
@@ -51,15 +64,31 @@ class App extends React.Component {
     render() {
         return (
             <div className="table-responsive">
-                <CUList customUsers={this.state.customUsers}/>
-                <ProjectList projects={this.state.projects}/>
-                <TodoList todos={this.state.todos}/>
+                <BrowserRouter>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/users">Пользователи</Link>
+                            </li>
+                            <li>
+                                <Link to="/projects">Проекты</Link>
+                            </li>
+                            <li>
+                                <Link to="/todo">Заметки</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <Switch>
+                        <Route exact path='/' component={() => <CUList customUsers={this.state.customUsers}/>}/>
+                        <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
+                        <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>}/>
+                        <Redirect from='/users' to='/' />
+                        <Route component={NotFound404}/>
+                    </Switch>
+                </BrowserRouter>
             </div>
         )
     }
 }
 
 export default App;
-
-
-
